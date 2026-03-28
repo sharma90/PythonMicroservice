@@ -76,6 +76,7 @@ def get_user(
     user: str = Depends(basic_auth)
 ):
     try:
+        print("Enter get_user method")
         user_data = breaker.call(service.get_user,db, user_id)
         return ApiResponse(success=True, data=user_data)
     except pybreaker.CircuitBreakerError as e:
