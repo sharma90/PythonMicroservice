@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: fastapi
-        image: python-microservice:latest
+        image: python-microservice:v2
         imagePullPolicy: Never
         ports:
         - containerPort: 8000
