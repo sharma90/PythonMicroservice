@@ -23,7 +23,7 @@ class UserService:
         return self.repo.save(db, user)
     
     def update_user(self, db: Session, user:User):
-        print("inside service update")
+        print("inside service update check changes argocd")
         #user = User(name=request.name)
         return self.repo.save(db, user)
     
