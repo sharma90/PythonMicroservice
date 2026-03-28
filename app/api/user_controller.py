@@ -79,6 +79,7 @@ def get_user(
         print("Enter get_user method")
         print("Enter get_user method again change done")
         print("Enter get_user method again change done2222")
+        print("Enter get_user method again change done3333")
         user_data = breaker.call(service.get_user,db, user_id)
         return ApiResponse(success=True, data=user_data)
     except pybreaker.CircuitBreakerError as e:
