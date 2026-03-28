@@ -37,7 +37,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh "docker build -t ${DOCKER_IMAGE}:${NEW_VERSION} ."
+                    bat "docker build -t ${DOCKER_IMAGE}:${NEW_VERSION} ."
                 }
             }
         }
@@ -50,7 +50,7 @@ pipeline {
                         usernameVariable: 'USERNAME',
                         passwordVariable: 'PASSWORD'
                     )]) {
-                        sh """
+                        bat """
                         echo $PASSWORD | docker login -u $USERNAME --password-stdin
                         docker push ${DOCKER_IMAGE}:${NEW_VERSION}
                         """
@@ -62,7 +62,7 @@ pipeline {
         stage('Update deployment.yaml') {
             steps {
                 script {
-                    sh """
+                    bat """
                     sed -i 's|image: .*|image: ${DOCKER_IMAGE}:${NEW_VERSION}|g' k8s/deployment.yaml
                     """
                 }
@@ -77,7 +77,7 @@ pipeline {
                         usernameVariable: 'GIT_USER',
                         passwordVariable: 'GIT_PASS'
                     )]) {
-                        sh """
+                        bat """
                         git config user.name "jenkins"
                         git config user.email "jenkins@example.com"
 
