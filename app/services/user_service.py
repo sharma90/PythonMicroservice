@@ -34,8 +34,8 @@ class UserService:
         return self.repo.deleteUser(db, user)
 
     # 🔁 Retry (like @Retryable)
-    @cached(cache, key=lambda self, db, user_id: user_id)
-    @retry(stop=stop_after_attempt(3), wait=wait_fixed(2))
+    #@cached(cache, key=lambda self, db, user_id: user_id)
+    #@retry(stop=stop_after_attempt(3), wait=wait_fixed(2))
     def get_user(self, db: Session, user_id: int):
         #print("counting")
         #requests.get("http://localhost:8082/fetchUserById/1")
