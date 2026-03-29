@@ -19,7 +19,7 @@ pipeline {
         stage('Test') {
            steps {
             bat """
-             C:\Users\Ravi\AppData\Local\Microsoft\WindowsApps\python.exe -m pytest --cov=app --cov-report=xml
+             C:\\Users\\Ravi\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe -m pytest --cov=app --cov-report=xml
             """
         }
         }
