@@ -84,7 +84,7 @@ pipeline {
                         git add k8s/deployment.yaml version.txt
                         git commit -m "Updated image to ${NEW_VERSION}" || echo "No changes"
 
-                        git push https://${GIT_USER}:${GIT_PASS}@github.com/sharma90/python-microservice.git HEAD:main
+                        git push https://${GIT_USER}:${GIT_PASS}@github.com/sharma90/PythonMicroservice.git HEAD:main
                         """
                     }
                 }
