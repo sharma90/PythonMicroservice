@@ -25,7 +25,7 @@ pipeline {
         stage('Install Dependencies') {
     steps {
         bat """
-        C:\\Users\\Ravi\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pip install -r requirements.txt
+        C:\\Users\\Ravi\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pip install -r app\requirements.txt
         """
     }
 }
