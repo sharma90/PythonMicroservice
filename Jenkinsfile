@@ -18,14 +18,14 @@ pipeline {
         }
         stage('Check Python') {
             steps {
-        bat "C:\\Users\\Ravi\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe --version"
+        bat "C:\\Users\\Ravi\\AppData\\Local\\Programs\\Python\\Python314\\python.exe --version"
         }
         }
 
         stage('Test') {
            steps {
             bat """
-             C:\\Users\\Ravi\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe -m pytest --cov=app --cov-report=xml
+             C:\\Users\\Ravi\\AppData\\Local\\Programs\\Python\\Python314\\python.exe -m pytest --cov=app --cov-report=xml
             """
         }
         }
