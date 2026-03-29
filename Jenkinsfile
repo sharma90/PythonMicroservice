@@ -16,6 +16,12 @@ pipeline {
                     url: 'https://github.com/sharma90/PythonMicroservice.git'
             }
         }
+        stage('Check Python') {
+            steps {
+        bat "C:\\Users\\Ravi\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe --version"
+        }
+        }
+
         stage('Test') {
            steps {
             bat """
