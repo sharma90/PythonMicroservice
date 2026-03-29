@@ -40,13 +40,17 @@ pipeline {
 
         stage('SonarQube Analysis') {
     steps {
-        withSonarQubeEnv('SonarQube') {
-            bat """
-            sonar-scanner ^
-              -Dsonar.projectKey=python-microservice ^
-              -Dsonar.sources=app ^
-              -Dsonar.python.coverage.reportPaths=coverage.xml
-            """
+        script {
+            def scannerHome = tool 'sonar-scanner'
+
+            withSonarQubeEnv('SonarQube') {
+                bat """
+                ${scannerHome}\\bin\\sonar-scanner.bat ^
+                  -Dsonar.projectKey=python-microservice ^
+                  -Dsonar.sources=app ^
+                  -Dsonar.python.coverage.reportPaths=coverage.xml
+                """
+            }
         }
     }
 }
