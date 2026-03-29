@@ -23,20 +23,17 @@ pipeline {
         }
 
         stage('SonarQube Analysis') {
-            tools {
-           sonarRunner 'sonar-scanner'
-    }
     steps {
-            withSonarQubeEnv('SonarQube') {
-                bat """
-                sonar-scanner ^
-                -Dsonar.projectKey=python-microservice ^
-                -Dsonar.sources=app ^
-                -Dsonar.python.coverage.reportPaths=coverage.xml
-                """
+        withSonarQubeEnv('SonarQube') {
+            bat """
+            sonar-scanner ^
+              -Dsonar.projectKey=python-microservice ^
+              -Dsonar.sources=app ^
+              -Dsonar.python.coverage.reportPaths=coverage.xml
+            """
         }
     }
-        }
+}
 
         stage('Quality Gate') {
               steps {
