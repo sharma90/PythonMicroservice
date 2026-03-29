@@ -59,15 +59,15 @@ pipeline {
             }
         }
 
-        stage('Update deployment.yaml') {
-            steps {
+         stage('Update deployment.yaml') {
+           steps {
                 script {
-                    bat """
-                    sed -i 's|image: .*|image: ${DOCKER_IMAGE}:${NEW_VERSION}|g' k8s/deployment.yaml
-                    """
-                }
-            }
+                    powershell """
+            (Get-Content k8s/deployment.yaml) -replace 'image: .*', 'image: ${env.DOCKER_IMAGE}:${env.NEW_VERSION}' | Set-Content k8s/deployment.yaml
+            """
         }
+    }
+}
 
         stage('Commit & Push Changes') {
             steps {
