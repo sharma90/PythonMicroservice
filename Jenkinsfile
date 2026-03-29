@@ -16,13 +16,26 @@ pipeline {
                     url: 'https://github.com/sharma90/PythonMicroservice.git'
             }
         }
+        stage('Test') {
+           steps {
+            bat "python -m pytest --cov=app --cov-report=xml"
+        }
+        }
 
         stage('SonarQube Analysis') {
-            steps {
-                withSonarQubeEnv('SonarQube') { // 'SonarQube' is the server name you configured
-                    bat 'sonar-scanner'
-                }
-            }
+            tools {
+           sonarQubeScanner 'sonar-scanner'
+    }
+    steps {
+            withSonarQubeEnv('SonarQube') {
+                bat """
+                sonar-scanner ^
+                -Dsonar.projectKey=python-microservice ^
+                -Dsonar.sources=app ^
+                -Dsonar.python.coverage.reportPaths=coverage.xml
+                """
+        }
+    }
         }
 
         stage('Quality Gate') {
